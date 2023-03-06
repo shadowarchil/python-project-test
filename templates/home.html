@@ -11,8 +11,13 @@
 <body>
     <h1>Home</h1>
 
-    {% for question in questions %}
+    {% for question in object_list %}
     <div>
+        <ul>
+            <li>{{ question.vote_set.all|length }} Vote</li>
+            <li>{{ question.answer_set.all|length }} Answer</li>
+            <li>{{ question.views }} Views</li>
+        </ul>
         <a href="#">{{ question.title }}</a>
         <p>{{ question.text }}</p>
         <p>{{ question.user }}</p>
