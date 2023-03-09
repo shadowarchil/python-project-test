@@ -4,6 +4,7 @@
 <h1>Questions</h1>
 
 <section>
+    <a href="{% url 'core:question-create' %}">Ask a new Question</a>
     {% for question in object_list %}
     <article class="border-top mt-3">
         <div class="row pt-3 pb-3">
