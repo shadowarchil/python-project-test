@@ -17,6 +17,7 @@ class HomeView(ListView):
     template_name = 'home.html'
     queryset = Question.objects.all()
     context_object_name = 'questions'
+    ordering = ['-create_time']
 
 
 class QuestionDetailView(DetailView):
