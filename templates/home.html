@@ -3,7 +3,7 @@
 {% block content %}
 <h1>Questions</h1>
 
-<section>
+<section class="bg-white p-3 rounded shadow-lg">
     <a href="{% url 'core:question-create' %}">Ask a new Question</a>
     {% for question in object_list %}
     <article class="border-top mt-3">
