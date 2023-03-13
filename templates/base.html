@@ -39,8 +39,9 @@
                 <div class="btn-group">
                 {% if not request.user.is_authenticated %}
                     <a href="{% url 'users:sign-in' %}" class="btn btn-primary">Sign In</a>
-                    <a href="#" class="btn btn-success">Sign Up</a>
+                    <a href="{% url 'users:sign-up' %}" class="btn btn-success">Sign Up</a>
                 {% else %}
+                    <span class="btn btn-primary disabled">{{ request.user.username }}</span>
                     <a href="{% url 'users:sign-out' %}" class="btn btn-danger">Sign Out</a>
                 {% endif %}
                 </div>
