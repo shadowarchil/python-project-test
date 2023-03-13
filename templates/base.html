@@ -20,7 +20,9 @@
     <link href="{% static 'main.css' %}" rel="stylesheet" /> 
 </head>
 
-<body style="background-image: url('{% static 'images/bg-image.jpg' %}')">
+{% comment %} <body style="background-image: url('{% static 'images/bg-image.jpg' %}')"> {% endcomment %}
+<!-- This is a HTML comment -->
+<body>
     <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="{% url 'core:home' %}">Stackoverflow</a>
@@ -31,7 +33,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <form class="navbar-nav w-100 me-auto d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <input name="q" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" value="{{ request.GET.q }}">
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
             </div>

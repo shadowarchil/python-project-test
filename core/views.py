@@ -16,9 +16,20 @@ def home_view(request: HttpRequest) -> HttpResponse:
 
 class HomeView(ListView):
     template_name = 'home.html'
-    queryset = Question.objects.all()
     context_object_name = 'questions'
     ordering = ['-create_time']
+    paginate_by = 5
+
+    def get_queryset(self):
+        queryset = Question.objects.filter(title__contains=self.request.GET.get('q', ''))
+    
+        ordering = self.get_ordering()
+        if ordering:
+            if isinstance(ordering, str):
+                ordering = (ordering,)
+            queryset = queryset.order_by(*ordering)
+
+        return queryset
 
 
 class QuestionDetailView(DetailView):
