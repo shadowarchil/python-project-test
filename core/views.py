@@ -48,6 +48,14 @@ class QuestionCreateView(LoginRequiredMixin, CreateView):
         kwargs['user'] = self.request.user
         return kwargs
 
+    def form_valid(self, form):
+        self.object = form.save()
+        self.object.tags.add(
+            *[tag.id for tag in form.cleaned_data['tags']]
+        )
+        return super().form_valid(form)
+        
+
 
 class QuestonDeleteView(LoginRequiredMixin, DeleteView):
     model = Question

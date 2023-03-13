@@ -17,9 +17,12 @@
                 <p><a href="{% url 'core:question-detail' question.pk %}">{{ question.title }}</a></p>
                 <div class="d-flex flex-row justify-content-between"> 
                     <div>
+                        {% for tag in question.tags.all %}
                         <div class="badge bg-primary">
-                            python
+                            {{ tag }}
                         </div>
+                        {% endfor %}
+                       
                     </div>
                     
                     <a href="#">

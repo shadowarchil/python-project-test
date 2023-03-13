@@ -1,10 +1,26 @@
 from django.db import models
 from django.conf import settings
+from django.core.exceptions import ValidationError
     
 
 # ORM
+
+class Tag(models.Model):
+    title = models.CharField(max_length=35, unique=True)
+    
+    def clean(self) -> None:
+        if not self.title.islower():
+            raise ValidationError({
+                'title': 'Title should be only in lower case'
+            })
+    
+    def __str__(self) -> str:
+        return self.title
+
+
 class Question(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    tags = models.ManyToManyField(Tag)
 
     title = models.CharField(max_length=255)
     text = models.TextField()
@@ -16,6 +32,9 @@ class Question(models.Model):
 
     def __str__(self) -> str:
         return f'{self.title}'
+    
+
+
 
 
 class Vote(models.Model):
